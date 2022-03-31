@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6ED7E93F27F54BBE00BD03CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */; };
+		6ED7E94227F54BBE00BD03CE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E94127F54BBE00BD03CE /* ViewController.m */; };
+		6ED7E94427F54BC000BD03CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7E94327F54BC000BD03CE /* Assets.xcassets */; };
+		6ED7E94727F54BC000BD03CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7E94527F54BC000BD03CE /* Main.storyboard */; };
+		6ED7E94927F54BC000BD03CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E94827F54BC000BD03CE /* main.m */; };
+		6ED7E95227F59EE000BD03CE /* WiFiTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E95127F59EE000BD03CE /* WiFiTools.m */; };
+		6ED7E95627F5B43100BD03CE /* QTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E95527F5B43100BD03CE /* QTextFieldCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6ED7E93A27F54BBE00BD03CE /* WiFiTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED7E93D27F54BBE00BD03CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6ED7E94027F54BBE00BD03CE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6ED7E94127F54BBE00BD03CE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6ED7E94327F54BC000BD03CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6ED7E94627F54BC000BD03CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6ED7E94827F54BC000BD03CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6ED7E94A27F54BC000BD03CE /* WiFiTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WiFiTools.entitlements; sourceTree = "<group>"; };
+		6ED7E95027F59EE000BD03CE /* WiFiTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WiFiTools.h; sourceTree = "<group>"; };
+		6ED7E95127F59EE000BD03CE /* WiFiTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WiFiTools.m; sourceTree = "<group>"; };
+		6ED7E95427F5B43100BD03CE /* QTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QTextFieldCell.h; sourceTree = "<group>"; };
+		6ED7E95527F5B43100BD03CE /* QTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QTextFieldCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6ED7E93727F54BBE00BD03CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6ED7E93127F54BBE00BD03CE = {
+			isa = PBXGroup;
+			children = (
+				6ED7E93C27F54BBE00BD03CE /* WiFiTools */,
+				6ED7E93B27F54BBE00BD03CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6ED7E93B27F54BBE00BD03CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6ED7E93A27F54BBE00BD03CE /* WiFiTools.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6ED7E93C27F54BBE00BD03CE /* WiFiTools */ = {
+			isa = PBXGroup;
+			children = (
+				6ED7E95327F5B40000BD03CE /* Extension */,
+				6ED7E93D27F54BBE00BD03CE /* AppDelegate.h */,
+				6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */,
+				6ED7E94027F54BBE00BD03CE /* ViewController.h */,
+				6ED7E94127F54BBE00BD03CE /* ViewController.m */,
+				6ED7E94327F54BC000BD03CE /* Assets.xcassets */,
+				6ED7E94527F54BC000BD03CE /* Main.storyboard */,
+				6ED7E94827F54BC000BD03CE /* main.m */,
+				6ED7E94A27F54BC000BD03CE /* WiFiTools.entitlements */,
+				6ED7E95027F59EE000BD03CE /* WiFiTools.h */,
+				6ED7E95127F59EE000BD03CE /* WiFiTools.m */,
+			);
+			path = WiFiTools;
+			sourceTree = "<group>";
+		};
+		6ED7E95327F5B40000BD03CE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6ED7E95427F5B43100BD03CE /* QTextFieldCell.h */,
+				6ED7E95527F5B43100BD03CE /* QTextFieldCell.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6ED7E93927F54BBE00BD03CE /* WiFiTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ED7E94D27F54BC000BD03CE /* Build configuration list for PBXNativeTarget "WiFiTools" */;
+			buildPhases = (
+				6ED7E93627F54BBE00BD03CE /* Sources */,
+				6ED7E93727F54BBE00BD03CE /* Frameworks */,
+				6ED7E93827F54BBE00BD03CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WiFiTools;
+			productName = WiFiTools;
+			productReference = 6ED7E93A27F54BBE00BD03CE /* WiFiTools.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6ED7E93227F54BBE00BD03CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					6ED7E93927F54BBE00BD03CE = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = 6ED7E93527F54BBE00BD03CE /* Build configuration list for PBXProject "WiFiTools" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6ED7E93127F54BBE00BD03CE;
+			productRefGroup = 6ED7E93B27F54BBE00BD03CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6ED7E93927F54BBE00BD03CE /* WiFiTools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6ED7E93827F54BBE00BD03CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED7E94427F54BC000BD03CE /* Assets.xcassets in Resources */,
+				6ED7E94727F54BC000BD03CE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6ED7E93627F54BBE00BD03CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED7E95627F5B43100BD03CE /* QTextFieldCell.m in Sources */,
+				6ED7E94227F54BBE00BD03CE /* ViewController.m in Sources */,
+				6ED7E94927F54BC000BD03CE /* main.m in Sources */,
+				6ED7E95227F59EE000BD03CE /* WiFiTools.m in Sources */,
+				6ED7E93F27F54BBE00BD03CE /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6ED7E94527F54BC000BD03CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6ED7E94627F54BC000BD03CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6ED7E94B27F54BC000BD03CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6ED7E94C27F54BC000BD03CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6ED7E94E27F54BC000BD03CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WiFiTools/WiFiTools.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7C448R8D4P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sonoptek.WiFiTools;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		6ED7E94F27F54BC000BD03CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WiFiTools/WiFiTools.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7C448R8D4P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sonoptek.WiFiTools;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6ED7E93527F54BBE00BD03CE /* Build configuration list for PBXProject "WiFiTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED7E94B27F54BC000BD03CE /* Debug */,
+				6ED7E94C27F54BC000BD03CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ED7E94D27F54BC000BD03CE /* Build configuration list for PBXNativeTarget "WiFiTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED7E94E27F54BC000BD03CE /* Debug */,
+				6ED7E94F27F54BC000BD03CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6ED7E93227F54BBE00BD03CE /* Project object */;
+}
