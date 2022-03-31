@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<CWNetworkProfile*>*)readNetworkProfiles;
 
-+ (NSString*)currentNetworkBSSID;
++ (NSString*)currentNetworkSSID;
 
 + (int)rssi2quality:(int)rssi;
 

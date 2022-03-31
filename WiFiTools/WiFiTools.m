@@ -12,9 +12,9 @@
 
 @implementation WiFiTools
 
-+ (NSString *)currentNetworkBSSID{
++ (NSString *)currentNetworkSSID{
     CWInterface* wifi = [[CWWiFiClient sharedWiFiClient] interface];
-    return wifi.bssid;
+    return wifi.ssid;
 }
 
 + (NSArray<CWNetwork *> *)scanResults{
