@@ -11,17 +11,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface QNetWork : NSObject
+@property(nonatomic, copy)      NSString*    ssid;
+@property(nonatomic, copy)      NSString*    bssid;
+@property(nonatomic, assign)    NSInteger    rssiValue;
+@property(nonatomic, assign)    NSInteger    qualityLevel;
+@property(nonatomic, copy)      NSString*    qualityDescribe;
+
+@property(nonatomic, copy)      NSString*    securityDescribe;
+@property(nonatomic, assign)    NSInteger    channel;
+@property(nonatomic, copy)      NSString*    channelDescribe;
+
++ (instancetype)initWith:(CWNetwork*)cw;
+@end
+
 @interface WiFiTools : NSObject
 
-+ (NSArray<CWNetwork *>*)scanResults;
 
-+ (NSArray<CWNetworkProfile*>*)readNetworkProfiles;
+- (QNetWork*)currentNetwork;
 
-+ (NSString*)currentNetworkSSID;
+- (void)scanResults:(void (^)(NSArray<QNetWork *>* results))block;
 
-+ (int)rssi2quality:(int)rssi;
+- (NSArray<CWNetworkProfile*>*)readNetworkProfiles;
 
-+ (void)callCommandline;
 @end
 
 NS_ASSUME_NONNULL_END
