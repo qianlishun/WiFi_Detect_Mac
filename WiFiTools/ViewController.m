@@ -52,6 +52,11 @@
 }
 
 - (IBAction)onRefresh:(id)sender {
+    [WiFiTools callAirport:^(NSString * _Nonnull result) {
+        NSLog(@"result");
+    }];
+    
+    return;
     __weak __typeof(self)weakSelf = self;
     [_wifiTools scanResults:^(NSArray<QNetWork *> * _Nonnull results) {
         weakSelf.networks = results;

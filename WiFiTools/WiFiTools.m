@@ -91,7 +91,31 @@
 }
 
 + (void)callAirport:(void (^)(NSString * _Nonnull))block{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0), ^{
+        NSString* result = [WiFiTools callCommandline:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s"];
+        block(result);
+    });
+}
+
++ (NSString*)callCommandline:(NSString*)cmd{
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/bin/bash"];
+    NSArray *arguments = [NSArray arrayWithObjects: @"-c", cmd, nil];
+    [task setArguments: arguments];
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput:pipe];
+    [task setStandardError:pipe];
     
+    NSFileHandle *handle = [pipe fileHandleForReading];
+    [handle waitForDataInBackgroundAndNotify];
+    [task launch];
+    [task waitUntilExit];
+
+    NSData *data = [handle readDataToEndOfFile];
+    NSString *outputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+//    NSLog(@"cmd output %@",outputString);
+    return outputString;
 }
 
 + (int)rssi2quality:(NSInteger)rssi{
@@ -117,6 +141,7 @@
 @end
 
 @implementation QNetWork
+
 + (instancetype)initWith:(CWNetwork*)cw{
     
     QNetWork *network = [QNetWork new];
@@ -133,7 +158,10 @@
     channelDescribe = [channelDescribe componentsSeparatedByString:@">"].lastObject;
     channelDescribe = [channelDescribe stringByReplacingOccurrencesOfString:@"channelNumber=" withString:@""];
     channelDescribe = [channelDescribe stringByReplacingOccurrencesOfString:@"channelWidth=" withString:@""];
-    channelDescribe = [channelDescribe stringByReplacingOccurrencesOfString:@"]" withString:@""];
+    channelDescribe = [channelDescribe stringByReplacingOccurrencesOfString:@" " withString:@""] ;
+    NSCharacterSet *character = [NSCharacterSet characterSetWithCharactersInString:@"[]{}"];
+    NSArray *array = [channelDescribe componentsSeparatedByCharactersInSet:character];
+    channelDescribe = [array componentsJoinedByString:@""];
     network.channelDescribe = channelDescribe;
     
     return network;
