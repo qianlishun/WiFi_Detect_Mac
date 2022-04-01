@@ -201,7 +201,7 @@
     network.bssid = cw.bssid;
     network.rssiValue = cw.rssiValue;
     int quality = [WiFiTools rssi2quality:cw.rssiValue];
-    network.qualityDescribe = [NSString stringWithFormat:@"%d(%ld)",quality,network.rssiValue];
+    network.qualityDescribe = [NSString stringWithFormat:@"%d%%(%ld)",quality,network.rssiValue];
     network.qualityLevel = [WiFiTools qualityLevelWith:quality];
     
     CWChannel *wlanChannel = [cw wlanChannel];

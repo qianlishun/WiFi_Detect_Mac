@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EBCB18727F718CB0042A785 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBCB18627F718CB0042A785 /* screenshot.png */; };
 		6ED7E93F27F54BBE00BD03CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */; };
 		6ED7E94227F54BBE00BD03CE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7E94127F54BBE00BD03CE /* ViewController.m */; };
 		6ED7E94427F54BC000BD03CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7E94327F54BC000BD03CE /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6EBCB18627F718CB0042A785 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = SOURCE_ROOT; };
 		6ED7E93A27F54BBE00BD03CE /* WiFiTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ED7E93D27F54BBE00BD03CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		6ED7E93C27F54BBE00BD03CE /* WiFiTools */ = {
 			isa = PBXGroup;
 			children = (
+				6EBCB18627F718CB0042A785 /* screenshot.png */,
 				6ED7E95327F5B40000BD03CE /* Extension */,
 				6ED7E93D27F54BBE00BD03CE /* AppDelegate.h */,
 				6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */,
@@ -143,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBCB18727F718CB0042A785 /* screenshot.png in Resources */,
 				6ED7E94427F54BC000BD03CE /* Assets.xcassets in Resources */,
 				6ED7E94727F54BC000BD03CE /* Main.storyboard in Resources */,
 			);
