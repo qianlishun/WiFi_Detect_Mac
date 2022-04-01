@@ -34,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<CWNetworkProfile*>*)readNetworkProfiles;
 
-+ (void)callAirport:(void (^)(NSString * _Nonnull))block;
 @end
 
 NS_ASSUME_NONNULL_END

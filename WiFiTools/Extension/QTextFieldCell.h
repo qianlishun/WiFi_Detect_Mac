@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QTextFieldCell : NSTextFieldCell
-@property (nonatomic) IBInspectable CGFloat oringeY;
 
 @end
 

@@ -65,21 +65,29 @@
     
     NSMutableSet *cachedResults = [NSMutableSet setWithSet: wifi.cachedScanResults];
         
-    for (CWNetwork *net in cachedResults ) {
-        QNetWork *qnet = [QNetWork initWith:net];
- 
-        if([wifi.ssid isEqualToString:net.ssid] ){ //}&& [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
-            self.theCurrentNetwork = qnet;
-        }
-        
-        [array addObject:qnet];
-    }
-    if(self.theCurrentNetwork){
-        [array removeObject:self.theCurrentNetwork];
-        [array insertObject:self.theCurrentNetwork atIndex:0];
-    }
+    [WiFiTools callAirport:^(NSString * _Nonnull result) {
 
-    block(array);
+        NSDictionary *securityDict = [WiFiTools analysisAirportPrint:result];
+        
+        for (CWNetwork *net in cachedResults ) {
+            QNetWork *qnet = [QNetWork initWith:net];
+            if(qnet.ssid.length >0 && [securityDict.allKeys containsObject:qnet.ssid]){
+                qnet.securityDescribe = [securityDict objectForKey:qnet.ssid];
+            }
+            
+            if([wifi.ssid isEqualToString:net.ssid] ){ //}&& [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
+                self.theCurrentNetwork = qnet;
+            }
+            
+            [array addObject:qnet];
+        }
+        if(self.theCurrentNetwork){
+            [array removeObject:self.theCurrentNetwork];
+            [array insertObject:self.theCurrentNetwork atIndex:0];
+        }
+
+        block(array);
+    }];
 }
 
 - (NSArray<CWNetworkProfile *> *)readNetworkProfiles{
@@ -88,6 +96,50 @@
         return [wifi.configuration.networkProfiles array];
     }
     return nil;
+}
+
++ (NSDictionary*)analysisAirportPrint:(NSString*)result{
+    NSMutableDictionary *securityDict = [NSMutableDictionary dictionary];
+    
+    if([result containsString:@"SECURITY (auth/unicast/group)"]){
+        result = [result componentsSeparatedByString:@"SECURITY (auth/unicast/group)\n"].lastObject;
+        result = [result stringByReplacingOccurrencesOfString:@"\n" withString:@"|n|"];
+
+        // 把连续的空格替换成 "|t|"
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\s{2,}" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSArray *arr = [regex matchesInString:result options:NSMatchingReportCompletion range:NSMakeRange(0, result.length)];
+        arr = [[arr reverseObjectEnumerator] allObjects];
+        for (NSTextCheckingResult *str in arr) {
+            result = [result stringByReplacingCharactersInRange:[str range] withString:@"|t|"];
+        }
+        // 按行分割
+        NSArray *netItems = [result componentsSeparatedByString:@"|n|"];
+
+        for (int i = 0; i < netItems.count; i++) {
+            NSString *itemStr = netItems[i];
+            NSArray *item = [itemStr componentsSeparatedByString:@"|t|"];
+            NSString *ssid = @"";
+            if([itemStr hasPrefix:@"|t|"] &&
+               [item.firstObject isEqualToString:@""]){
+                ssid = item[1];
+            }else{
+                ssid = item.firstObject;
+            }
+            NSString *security = @"";
+            if([itemStr hasSuffix:@"|t|"] &&
+               [item.lastObject isEqualToString:@""]){
+                security = item[item.count-2];
+            }else{
+                security = item.lastObject;
+            }
+            if(ssid && security){
+                security = [security stringByReplacingOccurrencesOfString:@"-- " withString:@""];
+                [securityDict setObject:security forKey:ssid];
+            }
+        }
+    }
+    return securityDict.copy;
 }
 
 + (void)callAirport:(void (^)(NSString * _Nonnull))block{
@@ -163,6 +215,8 @@
     NSArray *array = [channelDescribe componentsSeparatedByCharactersInSet:character];
     channelDescribe = [array componentsJoinedByString:@""];
     network.channelDescribe = channelDescribe;
+    
+    network.securityDescribe = @"";
     
     return network;
 }

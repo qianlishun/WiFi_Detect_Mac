@@ -35,7 +35,7 @@
 - (void)viewWillAppear{
     [super viewWillAppear];
     self.view.window.restorable = NO;
-    [self.view.window setContentSize:NSMakeSize(640, 480)];
+    [self.view.window setContentSize:NSMakeSize(800, 480)];
     
 }
 
@@ -52,13 +52,10 @@
 }
 
 - (IBAction)onRefresh:(id)sender {
-    [WiFiTools callAirport:^(NSString * _Nonnull result) {
-        NSLog(@"result");
-    }];
     
-    return;
     __weak __typeof(self)weakSelf = self;
     [_wifiTools scanResults:^(NSArray<QNetWork *> * _Nonnull results) {
+            
         weakSelf.networks = results;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -109,6 +106,12 @@
         NSTableCellView *cell = [tableView makeViewWithIdentifier:@"ChannelCell" owner:self];
 
         cell.textField.stringValue = model.channelDescribe;
+        
+        return cell;
+    }else if([tableColumn.identifier isEqualToString:@"SecurityColumn"]){
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"SecurityCell" owner:self];
+
+        cell.textField.stringValue = model.securityDescribe;
         
         return cell;
     }
