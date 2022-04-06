@@ -5,7 +5,7 @@ Wi-Fi infomation: SSID, signal, chanel, security...
 
 The project uses CoreWLAN and Airport to implement.
 
-CoreWLAN cannot obtain the SECURITY method of Wi-Fi,
+CoreWLAN cannot obtain the SECURITY type of Wi-Fi,
 
 So, I call airport with NSTask to get information:
 
