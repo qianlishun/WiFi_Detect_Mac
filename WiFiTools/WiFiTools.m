@@ -7,6 +7,10 @@
 
 #import "WiFiTools.h"
 
+@interface QNetWork()
+@property(nonatomic, strong) CWChannel *wlanChannel;
+@end
+
 @interface WiFiTools()
 @property(nonatomic, strong) QNetWork *theCurrentNetwork;
 @end
@@ -75,7 +79,7 @@
                 qnet.securityDescribe = [securityDict objectForKey:qnet.ssid];
             }
             
-            if([wifi.ssid isEqualToString:net.ssid] ){ //}&& [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
+            if([wifi.ssid isEqualToString:net.ssid] && [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
                 self.theCurrentNetwork = qnet;
             }
             
@@ -205,6 +209,7 @@
     network.qualityLevel = [WiFiTools qualityLevelWith:quality];
     
     CWChannel *wlanChannel = [cw wlanChannel];
+    network.wlanChannel = wlanChannel;
     network.channel = wlanChannel.channelNumber;
     NSString *channelDescribe = [NSString stringWithFormat:@"%@",wlanChannel];
     channelDescribe = [channelDescribe componentsSeparatedByString:@">"].lastObject;
@@ -221,4 +226,33 @@
     return network;
 }
 
+- (void)setSsid:(NSString *)ssid{
+    if(!ssid)
+        ssid = @"";
+    _ssid = ssid;
+}
+
+- (void)setBssid:(NSString *)bssid{
+    if(!bssid)
+        bssid = @"";
+    _bssid = bssid;
+}
+
+- (void)setChannelDescribe:(NSString *)channelDescribe{
+    if(!channelDescribe)
+        channelDescribe = @"";
+    _channelDescribe = channelDescribe;
+}
+
+- (void)setQualityDescribe:(NSString *)qualityDescribe{
+    if(!qualityDescribe)
+        qualityDescribe = @"";
+    _qualityDescribe = qualityDescribe;
+}
+
+- (void)setSecurityDescribe:(NSString *)securityDescribe{
+    if(!securityDescribe)
+        securityDescribe = @"";
+    _securityDescribe = securityDescribe;
+}
 @end

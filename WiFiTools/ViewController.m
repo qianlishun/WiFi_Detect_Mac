@@ -42,6 +42,7 @@
 - (void)viewDidAppear{
     [super viewDidAppear];
  
+    [self onRefresh:nil];
 }
 
 
