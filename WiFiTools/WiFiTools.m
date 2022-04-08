@@ -11,6 +11,8 @@
 @property(nonatomic, strong) CWChannel *wlanChannel;
 @end
 
+static NSString *wifiSecurityDefualtKey = @"wifiSecurityDefualtKey";
+
 @interface WiFiTools()
 @property(nonatomic, weak) id<WiFiToolsDelegate> theDelegate;
 @property(nonatomic, strong) QNetWork *theCurrentNetwork;
@@ -103,10 +105,8 @@
     __weak typeof(_theDelegate) weakDelegate = _theDelegate;
     [self callAirport:^(NSString * _Nonnull result) {
 
-        NSDictionary *dict = [WiFiTools analysisAirportPrint:result];
-        
-        [self.securityDict addEntriesFromDictionary:dict];
-        
+        [self analysisAirportPrint:result];
+                
         for (QNetWork *qnet in array) {
             if(qnet.ssid.length >0 && [weakSelf.securityDict.allKeys containsObject:qnet.ssid]){
                 qnet.securityDescribe = [weakSelf.securityDict objectForKey:qnet.ssid];
@@ -128,8 +128,7 @@
     return nil;
 }
 
-+ (NSDictionary*)analysisAirportPrint:(NSString*)result{
-    NSMutableDictionary *securityDict = [NSMutableDictionary dictionary];
+- (void)analysisAirportPrint:(NSString*)result{
     
     if([result containsString:@"SECURITY (auth/unicast/group)"]){
         result = [result componentsSeparatedByString:@"SECURITY (auth/unicast/group)\n"].lastObject;
@@ -164,12 +163,20 @@
                 security = item.lastObject;
             }
             if(ssid && security){
+                if([security hasSuffix:@" "]){
+                    security = [security stringByReplacingCharactersInRange:NSMakeRange(security.length-1, 1) withString:@""];
+                }
                 security = [security stringByReplacingOccurrencesOfString:@"-- " withString:@""];
-                [securityDict setObject:security forKey:ssid];
+                if([security hasSuffix:@")"] ||
+                   [security hasSuffix:@"NONE"]){
+                    [self.securityDict setObject:security forKey:ssid];
+                }
             }
         }
+        
+        // Save securityDict
+        [[NSUserDefaults standardUserDefaults]setObject:self.securityDict.copy forKey:wifiSecurityDefualtKey];
     }
-    return securityDict.copy;
 }
 
 - (void)callAirport:(void (^)(NSString * _Nonnull))callback{
@@ -216,7 +223,8 @@
 
 - (NSMutableDictionary *)securityDict{
     if(!_securityDict){
-        _securityDict = [NSMutableDictionary dictionary];
+        NSDictionary *dict = [[NSUserDefaults standardUserDefaults]objectForKey:wifiSecurityDefualtKey];
+        _securityDict = [NSMutableDictionary dictionaryWithDictionary:dict];
     }
     return _securityDict;
 }
@@ -268,7 +276,10 @@
     channelDescribe = [array componentsJoinedByString:@""];
     network.channelDescribe = channelDescribe;
     
-    network.securityDescribe = @"";
+    NSString *securityDescribe = [NSString stringWithFormat:@"%@",cw];
+    securityDescribe = [securityDescribe componentsSeparatedByString:@"security="].lastObject;
+    securityDescribe = [securityDescribe componentsSeparatedByString:@", rssi="].firstObject;
+    network.securityDescribe = securityDescribe;
     
     return network;
 }
