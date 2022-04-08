@@ -14,6 +14,7 @@
 @interface WiFiTools()
 @property(nonatomic, weak) id<WiFiToolsDelegate> theDelegate;
 @property(nonatomic, strong) QNetWork *theCurrentNetwork;
+@property(nonatomic, copy) NSMutableDictionary *securityDict;
 @end
 
 @implementation WiFiTools
@@ -87,19 +88,28 @@
         [array removeObject:self.theCurrentNetwork];
         [array insertObject:self.theCurrentNetwork atIndex:0];
     }
-
+    
+    for (QNetWork *qnet in array) {
+        if(qnet.ssid.length >0 && [self.securityDict.allKeys containsObject:qnet.ssid]){
+            qnet.securityDescribe = [self.securityDict objectForKey:qnet.ssid];
+        }
+    }
+    
     if(_theDelegate && [_theDelegate respondsToSelector:@selector(wifiToolsDidDiscoverNetworks:)]){
         [_theDelegate wifiToolsDidDiscoverNetworks:array];
     }
-        
+    
+    __weak typeof(self) weakSelf = self;
     __weak typeof(_theDelegate) weakDelegate = _theDelegate;
     [self callAirport:^(NSString * _Nonnull result) {
 
-        NSDictionary *securityDict = [WiFiTools analysisAirportPrint:result];
+        NSDictionary *dict = [WiFiTools analysisAirportPrint:result];
+        
+        [self.securityDict addEntriesFromDictionary:dict];
         
         for (QNetWork *qnet in array) {
-            if(qnet.ssid.length >0 && [securityDict.allKeys containsObject:qnet.ssid]){
-                qnet.securityDescribe = [securityDict objectForKey:qnet.ssid];
+            if(qnet.ssid.length >0 && [weakSelf.securityDict.allKeys containsObject:qnet.ssid]){
+                qnet.securityDescribe = [weakSelf.securityDict objectForKey:qnet.ssid];
             }
         }
         
@@ -191,15 +201,24 @@
             [mString appendString:outputString];
             NSLog(@"## %@",outputString);
             [handle waitForDataInBackgroundAndNotify];
-        }else{
-            callback(mString.copy);
-            [[NSNotificationCenter defaultCenter]  removeObserver:obs1];
         }
     }];
     
-
+    __block id obs2 = [[NSNotificationCenter defaultCenter]addObserverForName:NSTaskDidTerminateNotification object:task queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        callback(mString.copy);
+        [[NSNotificationCenter defaultCenter]  removeObserver:obs1];
+        [[NSNotificationCenter defaultCenter]  removeObserver:obs2];
+    }];
+    
     [task launch];
     [task waitUntilExit];
+}
+
+- (NSMutableDictionary *)securityDict{
+    if(!_securityDict){
+        _securityDict = [NSMutableDictionary dictionary];
+    }
+    return _securityDict;
 }
 
 + (int)rssi2quality:(NSInteger)rssi{
