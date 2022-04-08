@@ -11,7 +11,7 @@
 #import "ViewController.h"
 #import "WiFiTools.h"
 
-@interface ViewController()<NSTableViewDelegate,NSTableViewDataSource>
+@interface ViewController()<NSTableViewDelegate,NSTableViewDataSource,WiFiToolsDelegate>
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSButton *refreshButton;
 
@@ -30,6 +30,7 @@
     self.tableView.dataSource = self;
     
     self.wifiTools = [WiFiTools new];
+    [self.wifiTools setDelegate:self];
 }
 
 - (void)viewWillAppear{
@@ -53,16 +54,14 @@
 }
 
 - (IBAction)onRefresh:(id)sender {
-    
-    __weak __typeof(self)weakSelf = self;
-    [_wifiTools scanResults:^(NSArray<QNetWork *> * _Nonnull results) {
-            
-        weakSelf.networks = results;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-    
+    [_wifiTools scanNetwork];
+}
+
+- (void)wifiToolsDidDiscoverNetworks:(NSArray<QNetWork *> *)results{
+    self.networks = results;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Table

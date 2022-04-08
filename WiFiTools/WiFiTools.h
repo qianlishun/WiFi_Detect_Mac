@@ -25,12 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)initWith:(CWNetwork*)cw;
 @end
 
+
+@protocol WiFiToolsDelegate <NSObject>
+- (void)wifiToolsDidDiscoverNetworks:(NSArray<QNetWork *>*)results;
+@end
+
 @interface WiFiTools : NSObject
 
+- (void)setDelegate:(id<WiFiToolsDelegate>)delegate;
+
+- (void)scanNetwork;
 
 - (QNetWork*)currentNetwork;
-
-- (void)scanResults:(void (^)(NSArray<QNetWork *>* results))block;
 
 - (NSArray<CWNetworkProfile*>*)readNetworkProfiles;
 

@@ -12,16 +12,21 @@
 @end
 
 @interface WiFiTools()
+@property(nonatomic, weak) id<WiFiToolsDelegate> theDelegate;
 @property(nonatomic, strong) QNetWork *theCurrentNetwork;
 @end
 
 @implementation WiFiTools
 
+- (void)setDelegate:(id)delegate{
+    _theDelegate = delegate;
+}
+
 - (QNetWork *)currentNetwork{
     return self.theCurrentNetwork;
 }
 
-- (void)scanResults:(void (^)(NSArray<QNetWork *>* results))block{
+- (void)scanNetwork{
 
     NSLog(@"Connection established");
 
@@ -68,29 +73,40 @@
     NSMutableArray *array = [NSMutableArray array];
     
     NSMutableSet *cachedResults = [NSMutableSet setWithSet: wifi.cachedScanResults];
+    
+    for (CWNetwork *net in cachedResults ) {
+        QNetWork *qnet = [QNetWork initWith:net];
         
-    [WiFiTools callAirport:^(NSString * _Nonnull result) {
+        if([wifi.ssid isEqualToString:net.ssid]){// && [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
+            self.theCurrentNetwork = qnet;
+        }
+        
+        [array addObject:qnet];
+    }
+    if(self.theCurrentNetwork){
+        [array removeObject:self.theCurrentNetwork];
+        [array insertObject:self.theCurrentNetwork atIndex:0];
+    }
+
+    if(_theDelegate && [_theDelegate respondsToSelector:@selector(wifiToolsDidDiscoverNetworks:)]){
+        [_theDelegate wifiToolsDidDiscoverNetworks:array];
+    }
+        
+    __weak typeof(_theDelegate) weakDelegate = _theDelegate;
+    [self callAirport:^(NSString * _Nonnull result) {
 
         NSDictionary *securityDict = [WiFiTools analysisAirportPrint:result];
         
-        for (CWNetwork *net in cachedResults ) {
-            QNetWork *qnet = [QNetWork initWith:net];
+        for (QNetWork *qnet in array) {
             if(qnet.ssid.length >0 && [securityDict.allKeys containsObject:qnet.ssid]){
                 qnet.securityDescribe = [securityDict objectForKey:qnet.ssid];
             }
-            
-            if([wifi.ssid isEqualToString:net.ssid] && [wifi.wlanChannel isEqualToChannel:net.wlanChannel]){
-                self.theCurrentNetwork = qnet;
-            }
-            
-            [array addObject:qnet];
         }
-        if(self.theCurrentNetwork){
-            [array removeObject:self.theCurrentNetwork];
-            [array insertObject:self.theCurrentNetwork atIndex:0];
+        
+        if(weakDelegate && [weakDelegate respondsToSelector:@selector(wifiToolsDidDiscoverNetworks:)]){
+            [weakDelegate wifiToolsDidDiscoverNetworks:array];
         }
-
-        block(array);
+        
     }];
 }
 
@@ -146,14 +162,15 @@
     return securityDict.copy;
 }
 
-+ (void)callAirport:(void (^)(NSString * _Nonnull))block{
+- (void)callAirport:(void (^)(NSString * _Nonnull))callback{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0), ^{
-        NSString* result = [WiFiTools callCommandline:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s"];
-        block(result);
+        [self callCommandline:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s" callback:^(NSString * _Nonnull result) {
+            callback(result);
+        }];
     });
 }
 
-+ (NSString*)callCommandline:(NSString*)cmd{
+- (void)callCommandline:(NSString*)cmd callback:(void (^)(NSString * _Nonnull))callback{
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath: @"/bin/bash"];
     NSArray *arguments = [NSArray arrayWithObjects: @"-c", cmd, nil];
@@ -164,14 +181,25 @@
     
     NSFileHandle *handle = [pipe fileHandleForReading];
     [handle waitForDataInBackgroundAndNotify];
+    
+    NSMutableString *mString = [NSMutableString string];
+    
+    __block id obs1 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:handle queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        NSData *data = [handle availableData];
+        if(data.length > 0){
+            NSString *outputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [mString appendString:outputString];
+            NSLog(@"## %@",outputString);
+            [handle waitForDataInBackgroundAndNotify];
+        }else{
+            callback(mString.copy);
+            [[NSNotificationCenter defaultCenter]  removeObserver:obs1];
+        }
+    }];
+    
+
     [task launch];
     [task waitUntilExit];
-
-    NSData *data = [handle readDataToEndOfFile];
-    NSString *outputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-//    NSLog(@"cmd output %@",outputString);
-    return outputString;
 }
 
 + (int)rssi2quality:(NSInteger)rssi{

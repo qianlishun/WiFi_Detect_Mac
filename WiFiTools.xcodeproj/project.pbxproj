@@ -65,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				6EBCB18627F718CB0042A785 /* screenshot.png */,
+				6ED7E95027F59EE000BD03CE /* WiFiTools.h */,
+				6ED7E95127F59EE000BD03CE /* WiFiTools.m */,
 				6ED7E95327F5B40000BD03CE /* Extension */,
 				6ED7E93D27F54BBE00BD03CE /* AppDelegate.h */,
 				6ED7E93E27F54BBE00BD03CE /* AppDelegate.m */,
@@ -74,8 +76,6 @@
 				6ED7E94527F54BC000BD03CE /* Main.storyboard */,
 				6ED7E94827F54BC000BD03CE /* main.m */,
 				6ED7E94A27F54BC000BD03CE /* WiFiTools.entitlements */,
-				6ED7E95027F59EE000BD03CE /* WiFiTools.h */,
-				6ED7E95127F59EE000BD03CE /* WiFiTools.m */,
 			);
 			path = WiFiTools;
 			sourceTree = "<group>";
