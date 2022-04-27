@@ -710,7 +710,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r80-vr-cyE">
-                                <rect key="frame" x="350" y="0.0" width="100" height="40"/>
+                                <rect key="frame" x="340" y="0.0" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Fzv-Bd-AuS"/>
                                     <constraint firstAttribute="height" constant="40" id="ob8-fg-SzG"/>
@@ -900,7 +900,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="bNe-9b-bQh">
-                                    <rect key="frame" x="1" y="311" width="798" height="16"/>
+                                    <rect key="frame" x="1" y="312" width="798" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="n5q-rn-87v">

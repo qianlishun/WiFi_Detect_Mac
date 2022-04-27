@@ -29,7 +29,7 @@
 		6ED7E94827F54BC000BD03CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6ED7E94A27F54BC000BD03CE /* WiFiTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WiFiTools.entitlements; sourceTree = "<group>"; };
 		6ED7E95027F59EE000BD03CE /* WiFiTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WiFiTools.h; sourceTree = "<group>"; };
-		6ED7E95127F59EE000BD03CE /* WiFiTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WiFiTools.m; sourceTree = "<group>"; };
+		6ED7E95127F59EE000BD03CE /* WiFiTools.m */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = WiFiTools.m; sourceTree = "<group>"; };
 		6ED7E95427F5B43100BD03CE /* QTextFieldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QTextFieldCell.h; sourceTree = "<group>"; };
 		6ED7E95527F5B43100BD03CE /* QTextFieldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QTextFieldCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */

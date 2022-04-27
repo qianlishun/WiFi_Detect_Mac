@@ -61,7 +61,7 @@ static NSString *wifiSecurityDefualtKey = @"wifiSecurityDefualtKey";
     NSLog(@"channelWidth: %ld",channel.channelWidth);
     NSLog(@"channelBand: %ld ",channel.channelBand);
 
-        NSLog(@"\n\n----- CWConfiguration \n");
+    NSLog(@"\n\n----- CWConfiguration \n");
     CWConfiguration *config = wifi.configuration;
     NSLog(@"config: %@",config);
     NSLog(@"requireAdministratorForAssociation: %d",config.requireAdministratorForAssociation);
@@ -199,8 +199,8 @@ static NSString *wifiSecurityDefualtKey = @"wifiSecurityDefualtKey";
     NSFileHandle *handle = [pipe fileHandleForReading];
     [handle waitForDataInBackgroundAndNotify];
     
+   /*
     NSMutableString *mString = [NSMutableString string];
-    
     __block id obs1 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:handle queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         NSData *data = [handle availableData];
         if(data.length > 0){
@@ -210,15 +210,22 @@ static NSString *wifiSecurityDefualtKey = @"wifiSecurityDefualtKey";
             [handle waitForDataInBackgroundAndNotify];
         }
     }];
-    
+
     __block id obs2 = [[NSNotificationCenter defaultCenter]addObserverForName:NSTaskDidTerminateNotification object:task queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         callback(mString.copy);
         [[NSNotificationCenter defaultCenter]  removeObserver:obs1];
         [[NSNotificationCenter defaultCenter]  removeObserver:obs2];
     }];
+    */
     
     [task launch];
     [task waitUntilExit];
+   
+   NSData *data = [handle readDataToEndOfFile];
+   NSString *outputString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+   callback(outputString);
+
+   NSLog(@"%@",outputString);
 }
 
 - (NSMutableDictionary *)securityDict{
