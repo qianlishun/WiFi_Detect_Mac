@@ -18,6 +18,7 @@
 @property(nonatomic, strong) WiFiTools *wifiTools;
 @property(nonatomic, strong) NSArray<QNetWork*> *networks;
 
+@property(nonatomic, strong) NSMutableDictionary *sortAscendings;
 @end
 
 @implementation ViewController
@@ -119,5 +120,43 @@
     return nil;
 }
 
+- (void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn{
+    NSLog(@"%s %@",__func__,tableColumn.identifier);
+    
+    NSString *key = @"";
+    
+    NSSortDescriptor *sortDescripttor;
+    if([tableColumn.identifier isEqualToString:@"SSIDColumn"]){
+        key = @"ssid";
+    }else if([tableColumn.identifier isEqualToString:@"RSSIColumn"]){
+        key = @"rssiValue";
+    }else if([tableColumn.identifier isEqualToString:@"ChannelColumn"]){
+        key = @"channel";
+    }else if([tableColumn.identifier isEqualToString:@"SecurityColumn"]){
+        key = @"securityDescribe";
+    }
+    
+    BOOL ascending = ![[self.sortAscendings objectForKey:key] boolValue];
+    sortDescripttor = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
 
+    if(sortDescripttor){
+        self.networks = [self.networks sortedArrayUsingDescriptors:@[sortDescripttor]];
+        [self.tableView reloadData];
+    }
+    
+    [self.sortAscendings setObject:[NSNumber numberWithBool:ascending] forKey:key];
+}
+
+- (NSMutableDictionary *)sortAscendings{
+    if(!_sortAscendings){
+        _sortAscendings = [NSMutableDictionary dictionaryWithDictionary: @{
+            @"ssid": @YES,
+            @"rssiValue": @YES,
+            @"channel" : @YES,
+            @"securityDescribe": @YES
+        }];
+        
+    }
+    return _sortAscendings;
+}
 @end

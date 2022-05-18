@@ -799,7 +799,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="zhH-8C-TW6"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="justified" title="60%(-50)" placeholderString="60" id="8Bv-nB-8x5" customClass="QTextFieldCell">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="60%(-50)" placeholderString="60" id="8Bv-nB-8x5" customClass="QTextFieldCell">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
