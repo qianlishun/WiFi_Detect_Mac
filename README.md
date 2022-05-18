@@ -1,8 +1,10 @@
 # WiFi_Detect_Mac
 Wi-Fi infomation: SSID, signal, chanel, security...  
   
+使用 CoreWLAN 和 Airport 实现。  
+CoreWLAN 无法获取到 Wi-Fi 的加密方式，
+所以使用 NSTask 调用外部命令 airport 来获取 Wi-Fi 的加密方式。
   
-
 The project uses CoreWLAN and Airport to implement.
 
 CoreWLAN cannot obtain the SECURITY type of Wi-Fi,
